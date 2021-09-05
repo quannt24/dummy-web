@@ -1,0 +1,13 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Files that will always use LF
+# LF is prefered in most of the case
+*.sh text eol=lf
+*.java text eol=lf
+*.xml text eol=lf
+*.properties text eol=lf
+*.md text eol=lf
+
+# Files that will always use CRLF
+*.sln text eol=crlf
