@@ -3,17 +3,26 @@ package dummy.dummyweb.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import dummy.dummyweb.model.Greeting;
 
 @Controller
 @RequestMapping("/greeting")
 public class GreetingController {
 
     @GetMapping
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
-            Model model) {
-        model.addAttribute("name", name); // TODO Remove hardcoded attribute name
+    public String getGreeting(Model model) {
+        model.addAttribute("greeting", new Greeting()); // TODO Remove hardcoded attribute name
+        return "greeting"; // TODO Remove hardcoded view name
+    }
+
+    @PostMapping
+    public String postGreeting(Model model,
+            @ModelAttribute Greeting greeting /* Must match with model attribute name by default */) {
+        model.addAttribute("greeting", greeting); // TODO Remove hardcoded attribute name
         return "greeting"; // TODO Remove hardcoded view name
     }
 
